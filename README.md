@@ -1,5 +1,7 @@
 # PeerTalk - Comunicação Peer-to-Peer
 
+[![Aplicação](https://img.shields.io/badge/Aplicação-%23007bff.svg)](https://michellegomes85.github.io/PeerTalk/)
+
 Este projeto demonstra o funcionamento básico de uma rede **Peer-to-Peer (P2P)**, onde dispositivos podem se conectar diretamente uns aos outros para trocar dados, sem a necessidade de um servidor intermediário. A comunicação entre os peers ocorre diretamente, permitindo uma rede descentralizada e mais eficiente.
 
 ## O que é uma Rede P2P?
