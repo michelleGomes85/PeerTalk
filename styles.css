@@ -90,7 +90,7 @@ body {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
-    padding: 20px 50px;
+    padding: 20px 30px;
 }
 
 #chat {
@@ -143,7 +143,6 @@ body {
 
 .modal {
     display: none;
-    /* Esconde o modal por padrão */
     position: fixed;
     top: 0;
     left: 0;

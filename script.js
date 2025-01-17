@@ -24,15 +24,6 @@ let peersConnected = [];
  */
 peer.on("open", (id) => {
   peerTitle.textContent = id;
-
-  // Gera o link completo com o ID do peer
-  const peerLink = `https://michellegomes85.github.io/PeerTalk/?peerId=${id}`;
-
-  console.log(peerLink);
-  QRCode.toCanvas(document.getElementById("qrcode"), peerLink, (error) => {
-    if (error) console.error(error);
-    console.log("QR Code gerado com sucesso!");
-  });
 });
 
 /**
@@ -62,6 +53,9 @@ connectButton.addEventListener("click", () => {
   }
 });
 
+/**
+ * Envia uma mensagem para todos os peers conectados.
+ */
 sendButton.addEventListener("click", () => {
   const message = chatInput.value.trim();
 
@@ -167,32 +161,5 @@ function showModal(message) {
     if (event.target === modal) {
       modal.style.display = "none";
     }
-  });
-}
-
-// Função para capturar parâmetros da URL
-function getQueryParam(param) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(param);
-}
-
-// Preenche o campo de entrada com o ID do peer, se presente na URL
-const peerIdFromUrl = getQueryParam("peerId");
-if (peerIdFromUrl) {
-  peerIdInput.value = peerIdFromUrl;
-
-  // Se o peerId estiver presente, conecta automaticamente
-  const connection = peer.connect(peerIdFromUrl);
-
-  connection.on("open", () => {
-    showModal("Conexão automática estabelecida!");
-    chatInput.disabled = false;
-    sendButton.disabled = false;
-    addConnectionBox(peerIdFromUrl);
-    peersConnected.push(connection);
-  });
-
-  connection.on("data", (data) => {
-    displayMessage(`Amigo: ${data}`, "friend", userColors[peerIdFromUrl]);
   });
 }
