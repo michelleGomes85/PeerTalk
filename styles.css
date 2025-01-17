@@ -9,7 +9,7 @@ body {
 
 /* Header */
 #header {
-    padding: 20px 0;
+    padding: 10px 0;
     background-color: #215341;
     color: white;
     text-align: center;
@@ -17,11 +17,16 @@ body {
     width: 100vw;
 }
 
+#header p {
+    padding: 0 20px;
+}
+
 /* Seção para conectar com o ID */
 #peerIdSection {
     display: flex;
     justify-content: center;
     margin: 20px 0;
+    padding: 20px 40px;
 }
 
 #peerIdSection input {
@@ -85,6 +90,7 @@ body {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    padding: 20px 50px;
 }
 
 #chat {
@@ -171,3 +177,14 @@ body {
 .modal-close:hover {
     background-color: #215341;
 }
+
+#qrcode {
+    margin: 20px auto;
+    text-align: center;
+  }
+  
+  #qrcode canvas {
+    border: 10px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
