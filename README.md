@@ -4,65 +4,94 @@
 
 Este projeto demonstra o funcionamento básico de uma rede **Peer-to-Peer (P2P)**, onde dispositivos podem se conectar diretamente uns aos outros para trocar dados, sem a necessidade de um servidor intermediário. A comunicação entre os peers ocorre diretamente, permitindo uma rede descentralizada e mais eficiente.
 
+---
+
 ## O que é uma Rede P2P?
 
-Uma rede **Peer-to-Peer (P2P)** é um tipo de rede distribuída em que todos os dispositivos ou "peers" têm capacidades equivalentes e podem se conectar uns aos outros para compartilhar recursos, como dados ou serviços. Ao contrário das redes tradicionais client-servidor, onde os clientes fazem solicitações a um servidor centralizado, em uma rede P2P, cada dispositivo pode tanto fornecer quanto consumir recursos, permitindo comunicação e colaboração descentralizada.
+Uma rede **Peer-to-Peer (P2P)** é um tipo de rede distribuída em que todos os dispositivos ou "peers" têm capacidades equivalentes e podem se conectar uns aos outros para compartilhar recursos, como dados ou serviços. 
 
-Na rede P2P, os dispositivos (chamados de "peers") se comunicam diretamente entre si, sem depender de um servidor central para gerenciar ou armazenar dados. 
+### Características principais:
+- **Descentralização**: Os dispositivos comunicam-se diretamente sem a necessidade de um servidor central.
+- **Colaboração**: Cada peer pode fornecer e consumir recursos, contribuindo para a eficiência da rede.
+
+---
 
 ## Tecnologias Utilizadas
 
-Este projeto foi construído utilizando as seguintes tecnologias:
-
+### Principais Tecnologias:
 - **HTML & CSS**: Para a estruturação e estilização da interface de usuário.
-- **JavaScript (PeerJS)**: Para implementação da funcionalidade de comunicação P2P.
-- **PeerJS**: Uma biblioteca JavaScript que facilita a construção de redes P2P, fornecendo abstrações para a criação de conexões entre peers e a troca de dados.
+- **JavaScript (PeerJS)**: Para a implementação da funcionalidade de comunicação P2P.
+- **PeerJS**: Uma biblioteca JavaScript que facilita a criação de redes P2P.
 
-### PeerJS
+### [PeerJS](https://peerjs.com/) 
+O **PeerJS** simplifica a implementação de redes P2P em navegadores, utilizando a tecnologia WebRTC.
 
-O **PeerJS** é uma biblioteca que simplifica a implementação de redes P2P em navegadores, utilizando a API WebRTC para estabelecer comunicação direta entre dispositivos. Com PeerJS, podemos facilmente criar e gerenciar conexões entre peers, enviando dados em tempo real através dessas conexões.
+- **Abstrações**: Fornece uma API amigável para criar e gerenciar conexões entre peers.
+- **Conexão Direta**: Utiliza WebRTC para estabelecer comunicação em tempo real.
+
+### [WebRTC](https://webrtc.org/) 
+O **WebRTC** (Web Real-Time Communication) é uma tecnologia que permite a comunicação direta entre navegadores sem necessidade de servidores intermediários.
+
+- **Funcionalidades**: Troca de dados, áudio e vídeo em tempo real.
+- **Base para PeerJS**: A biblioteca PeerJS utiliza WebRTC como base para transmissão de dados entre peers.
+
+---
 
 ## Funcionalidades do Projeto
 
-- **Conexão entre Peers**: O usuário pode conectar-se a outro peer através de um ID único, fornecido automaticamente quando a aplicação é iniciada.
-- **Envio de Mensagens**: Após a conexão, o usuário pode enviar mensagens para o peer conectado.
-- **Conexões Visuais**: O número de peers conectados é mostrado na interface com indicadores visuais, permitindo visualizar o estado das conexões.
-- **Notificações**: Mensagens de conexão e erro são exibidas em modais, fornecendo feedback para o usuário.
+- **Conexão entre Peers**: Cada usuário recebe um ID único gerado automaticamente para conexões.
+- **Envio de Mensagens**: Mensagens podem ser trocadas entre peers conectados.
+- **Conexões Visuais**: Indicadores visuais mostram o estado e o número de peers conectados.
+- **Notificações**: Mensagens de erro e de conexão são exibidas para o usuário.
+
+---
 
 ## Como Rodar o Projeto
 
 ### Pré-requisitos
+- Navegador moderno compatível com WebRTC (como Google Chrome ou Firefox).
 
-Antes de rodar o projeto, é necessário ter um navegador web moderno que suporte WebRTC (como o Google Chrome ou Firefox).
+### Passos
 
-### Rodando o Projeto Localmente
+- Acesse o link aplicação na parte de cima ou se quiser rodar localmente siga os passos abaixo:
 
-1. Clone este repositório para sua máquina local:
-
+1. Clone este repositório:
    ```bash
    git clone https://github.com/michelleGomes85/PeerTalk.git
    ```
 
-2. Navegue até a pasta do projeto
+2. Navegue até a pasta do projeto:
+   ```bash
+   cd PeerTalk
+   ```
 
-  ```bash
-  cd Peer-Talk
-  ```
+3. Abra o arquivo `index.html` no navegador para iniciar a aplicação.
 
-3. Abra o arquivo index.html no seu navegador para iniciar a aplicação.
+4. Ao abrir o aplicativo, um ID único de peer será gerado automaticamente. Compartilhe esse ID com outro usuário para estabelecer uma conexão.
 
-4. Ao abrir o aplicativo, um ID de peer será gerado automaticamente e exibido na parte superior da página. O usuário pode então compartilhar esse ID com outros para permitir a conexão.
+5. Para conectar-se a outro peer, insira o ID do outro usuário na seção "Digite o ID do Peer" e clique em "Conectar".
 
-4. Para se conectar a outro peer, digite o ID fornecido por outro usuário na seção "Digite o ID do Peer" e clique em "Conectar". Após a conexão ser estabelecida, você poderá enviar mensagens entre os peers.
+---
 
-## Funcionamento 
+## Explicação do Código
 
-O código JavaScript gerencia a lógica de conexão entre os peers:
+Este código implementa um sistema básico de comunicação P2P utilizando a biblioteca PeerJS:
 
-1. **Criação de um Peer:** Ao iniciar a aplicação, um peer é criado usando a biblioteca PeerJS. O ID do peer é gerado e exibido para o usuário.
+1. **Inicialização do Peer**: O Peer é criado para gerenciar conexões. O ID gerado é a identidade única do peer na rede.
 
-2. **Conectar a outro Peer:** Quando o usuário insere um ID de peer e clica no botão "Conectar", o aplicativo tenta estabelecer uma conexão com o peer remoto utilizando o método peer.connect(peerId).
+2. **Conexão**: O botão "Conectar" usa o ID de outro peer para estabelecer uma conexão. As conexões são bidirecionais e permitem a troca de dados.
 
-3. **Troca de Dados:** Após a conexão ser estabelecida, os dados podem ser enviados entre os peers através do método connection.send(). Quando o peer remoto envia dados, a função on("data") é acionada para exibir a mensagem no chat.
+3. **Envio de Mensagens**: As mensagens digitadas são enviadas a todos os peers conectados. Cada mensagem recebida ou enviada é exibida na interface.
 
-4. **Gerenciamento de Conexões:** O aplicativo mantém um registro de todas as conexões ativas e exibe uma caixa colorida para cada peer conectado.
+4. **Feedback ao Usuário**: Modais e indicadores visuais informam o status das conexões e mensagens.
+
+5. **Cores e Identificação**: Cada peer recebe uma cor única, facilitando a distinção entre vários peers na interface.
+
+Este exemplo demonstra a base de uma rede P2P descentralizada, onde os dispositivos podem se comunicar diretamente sem servidores intermediários.
+
+---
+
+## Referências
+
+- [PeerJS Documentação Oficial](https://peerjs.com/)
+- [WebRTC Documentação Oficial](https://webrtc.org/)
